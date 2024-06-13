@@ -2,6 +2,8 @@ package br.com.alura.aluvery.ui.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -30,20 +32,29 @@ fun ProductsSection(
             fontSize = 20.sp,
             fontWeight = FontWeight(400)
         )
-        Row(
+        LazyRow(
             Modifier
                 .padding(
                     top = 8.dp
                 )
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState()),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Spacer(Modifier)
-            for (p in products) {
-                ProductItem(product = p)
-            }
-            Spacer(Modifier)
+
+
+                /*for (p in List(1000){
+                    sampleProducts.first()
+                }) {
+                    //iTEM É usado para cabeçalho, para lista usar Itens
+                    item{
+                        //Spacer(Modifier)
+                    ProductItem(product = p)
+                        //Spacer(Modifier)
+                } }*/
+
+            items(products){ p -> ProductItem(product = p)}
+
+
         }
     }
 }

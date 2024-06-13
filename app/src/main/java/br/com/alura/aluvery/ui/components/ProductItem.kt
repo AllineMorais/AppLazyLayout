@@ -62,7 +62,8 @@ fun ProductItem(product: Product) {
                         .offset(y = imageSize / 2)
                         .clip(shape = CircleShape)
                         .align(Alignment.BottomCenter),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(id = R.drawable.placeholder)
                 )
             }
             Spacer(modifier = Modifier.height(imageSize / 2))
