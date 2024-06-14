@@ -59,11 +59,40 @@ val sampleProducts: List<Product> = listOf(
         name = "Batata frita",
         price = BigDecimal("7.99"),
         image = "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg"
-    ), *sampleDrinks.toTypedArray(), *sampleCandies.toTypedArray()
+    ),
+    Product(
+        name = "Batata frita",
+        price = BigDecimal("7.99"),
+        image = "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg"
+    )
 )
 
+
+val sampleVinho = listOf(
+    Product(
+        name = "vINHO 1",
+        price = BigDecimal("5.99"),
+        image = "https://images.pexels.com/photos/1552630/pexels-photo-1552630.jpeg",
+    ),
+    Product(
+        name = "Vinho 2",
+        price = BigDecimal("4.99"),
+        image = "https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg"
+    ),
+    Product(
+        name = "Vinho 3",
+        price = BigDecimal("7.99"),
+        image = "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg"
+    ),
+    Product(
+        name = "Vinho 4",
+        price = BigDecimal("2.99"),
+        image = "https://images.pexels.com/photos/327090/pexels-photo-327090.jpeg"
+    )
+)
 val sampleSections = mapOf(
     "Promoções" to sampleProducts,
     "Doces" to sampleCandies,
-    "Bebidas" to sampleDrinks
+    "Bebidas" to sampleDrinks,
+    "Vinho" to sampleVinho
 )

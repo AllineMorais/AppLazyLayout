@@ -54,8 +54,7 @@ fun ProductsSection(
 
             items(products){ p -> ProductItem(product = p)}
 
-
-        }
+      }
     }
 }
 
