@@ -37,11 +37,19 @@ import br.com.alura.aluvery.ui.theme.AluveryTheme
 
 @Composable
 fun HomeScreen(
-    sections: Map<String, List<Product>>
+    sections: Map<String, List<Product>>,
+    searchText: String = ""
 ) {
     Column {
         //a tela é redesenhada a cada interação, é preciso controlar o estado (Equivalente ao onpress do JavaScript)
-        var text by remember { mutableStateOf("") }
+        var text by remember { mutableStateOf(searchText) }
+        val sampleFiltrado = remember() {
+          sampleProducts.filter { Product ->
+            return@filter Product.name.contains(searchText, ignoreCase = true) ||
+              Product.description?.contains(searchText, ignoreCase = true) ?: false
+
+          }
+        }
         //OnValue change notifica se o valor é modificado
         OutlinedTextField(
             value = text,
@@ -49,9 +57,10 @@ fun HomeScreen(
             text = newValue
             Log.i("HomeScreen", "HOmeScreen TextField: $newValue ")
         } ,
-            Modifier
-                .padding( 16.dp)
-                .fillMaxWidth(),
+
+          Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
             shape = RoundedCornerShape(75),
             leadingIcon = { Icon(Icons.Default.Search , contentDescription = "") },
             label = {Text(text = "O que você procura")}
@@ -64,20 +73,27 @@ fun HomeScreen(
         contentPadding = PaddingValues(bottom = 16.dp)
     ) {
        item {  Spacer(Modifier) }
-        items(sampleProducts)
-       {p -> CardProductItem(
-           product = p,
-           modifier = Modifier.padding(horizontal = 16.dp),
-       ) }
-      /*  for (section in sections) {
-            item {
+      if(text.isBlank())
+      {
+        for (section in sections) {
+          item {
             val title = section.key
             val products = section.value
             ProductsSection(
-                title = title,
-                products = products
+              title = title,
+              products = products
             )}
-        }*/
+        }
+      }
+      else{ items(sampleFiltrado)
+        {
+            p -> CardProductItem(
+           product = p,
+           modifier = Modifier.padding(horizontal = 16.dp),
+       ) }
+
+      }
+
         item {  Spacer(Modifier) }
     }
     }
@@ -92,3 +108,14 @@ private fun HomeScreenPreview() {
         }
     }
 }
+
+@Preview
+@Composable
+private fun HomeScreenPrevieBUSCA() {
+  AluveryTheme {
+    Surface {
+      HomeScreen(sampleSections, "a")
+    }
+  }
+}
+
